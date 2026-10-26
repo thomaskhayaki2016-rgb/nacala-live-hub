@@ -4,7 +4,7 @@
 <div class="player">
 <h3>🎧 SIKILIZA LIVE - ZENO RADIO</h3>
 <audio controls autoplay style="width:100%"><source src="https://stream.zeno.fm/0r0xauk8m8yzv"></audio>
-<h3 style="margin-top:22px">🎵 Watch My Videos</h3>
+<h3 style="margin-top:22px">🎵 Tap to Watch My Videos</h3>
 <div class="btns">
 <a class="b yt" href="https://youtube.com/@thomask473" target="_blank">▶️<br>YouTube</a>
 <a class="b tt" href="https://www.tiktok.com/@userthomask" target="_blank">🎵<br>TikTok</a>
@@ -13,27 +13,21 @@
 </div>
 
 <div class="card">
-<h3>📩 SEND REQUEST HERE - No WhatsApp Needed!</h3>
+<h3>📩 SEND REQUEST HERE</h3>
 <p style="color:#aaa;font-size:13px">Type your request and it will appear below instantly for everyone to see!</p>
 <input id="name" placeholder="Jina lako / Your Name - e.g. John">
 <input id="village" placeholder="Kijiji / Village - e.g. Matayos, Busia">
 <input id="song" placeholder="Wimbo / Song Request - e.g. Isukuti ya Busia">
 <textarea id="msg" placeholder="Ujumbe / Message - e.g. Mlembe to all Waluhya!" rows="2"></textarea>
 <button class="req" onclick="sendReq()">📤 Tuma Request / Send Request</button>
-
 <div id="requests" style="margin-top:18px">
 <h4>🔥 Live Requests from Fans:</h4>
 <div id="list"></div>
 </div>
 </div>
 
-<div class="card" style="text-align:center">
-<a class="wa" href="https://wa.me/254115566592" target="_blank" style="margin:0">💬 Or WhatsApp: +254115566592</a>
-</div>
-
 <footer style="text-align:center;color:#555;padding:20px">© 2026 WALUHYA 2 THE WORLD</footer>
 <script>
-// Load requests
 let reqs = JSON.parse(localStorage.getItem('waluhya_reqs') || '[]');
 function showReqs(){
 let html = '';
@@ -48,13 +42,13 @@ let n=document.getElementById('name').value;
 let v=document.getElementById('village').value;
 let s=document.getElementById('song').value;
 let m=document.getElementById('msg').value;
-if(!n||!s){alert('Tafadhali andika jina na wimbo / Please enter name and song');return;}
+if(!n||!s){alert('Tafadhali andika jina na wimbo');return;}
 let now = new Date().toLocaleString();
 reqs.push({name:n,village:v,song:s,msg:m,time:now});
 localStorage.setItem('waluhya_reqs',JSON.stringify(reqs));
 document.getElementById('name').value='';document.getElementById('village').value='';document.getElementById('song').value='';document.getElementById('msg').value='';
 showReqs();
-alert('Mlembe! Request imetumwa! ✅ Your request is LIVE on site!');
+alert('Mlembe! Request imetumwa! ✅');
 }
 </script>
 </body></html>
