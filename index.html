@@ -1,17 +1,60 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WALUHYA 2 THE WORLD</title><style>body{margin:0;font-family:system-ui;background:#0a0a0a;color:#fff}.header{background:#e11d48;padding:14px 20px;display:flex;align-items:center;gap:15px}.header img{width:62px;height:62px;border-radius:50%;border:3px solid #fff;object-fit:cover}.hero{padding:28px 20px;text-align:center;background:linear-gradient(135deg,#e11d48,#7f1d1d)}.player{margin:-14px auto 14px;max-width:850px;background:#171717;padding:20px;border-radius:20px;border:1px solid #262626}.btns{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.b{padding:18px 6px;border-radius:14px;text-align:center;text-decoration:none;color:#fff;font-weight:800}.yt{background:#FF0000}.tt{background:#111;border:1px solid #333}.fb{background:#1877F2}.wa{background:#25D366;display:block;text-align:center;margin-top:12px;padding:16px;border-radius:14px;text-decoration:none;color:#fff;font-weight:800}</style></head><body>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WALUHYA 2 THE WORLD</title><style>body{margin:0;font-family:system-ui;background:#0a0a0a;color:#fff}.header{background:#e11d48;padding:14px 20px;display:flex;align-items:center;gap:15px}.header img{width:62px;height:62px;border-radius:50%;border:3px solid #fff;object-fit:cover}.hero{padding:28px 20px;text-align:center;background:linear-gradient(135deg,#e11d48,#7f1d1d)}.player{margin:-14px auto 14px;max-width:850px;background:#171717;padding:20px;border-radius:20px;border:1px solid #262626}.btns{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.b{padding:18px 6px;border-radius:14px;text-align:center;text-decoration:none;color:#fff;font-weight:800}.yt{background:#FF0000}.tt{background:#111;border:1px solid #333}.fb{background:#1877F2}.wa{background:#25D366;display:block;text-align:center;margin-top:12px;padding:16px;border-radius:14px;text-decoration:none;color:#fff;font-weight:800}.card{max-width:850px;margin:12px auto;background:#151515;border-radius:14px;padding:18px;border:1px solid #222}input,textarea{width:100%;background:#222;border:1px solid #333;color:#fff;padding:12px;border-radius:10px;margin:6px 0;box-sizing:border-box}button.req{background:#e11d48;color:#fff;border:0;padding:14px;border-radius:10px;font-weight:800;width:100%;cursor:pointer}.request-item{background:#222;padding:12px;border-radius:10px;margin:8px 0;border-left:4px solid #e11d48}</style></head><body>
 <div class="header"><img src="567e0b8c-f4ee-d6f1-acd5-54e894934e65.jpeg"><h1 style="margin:0;font-size:19px">WALUHYA 2 THE WORLD</h1></div>
 <div class="hero"><h2>🔴 From Busia to the World 🌍</h2><p>LIVE on Zeno Radio</p></div>
 <div class="player">
 <h3>🎧 SIKILIZA LIVE - ZENO RADIO</h3>
 <audio controls autoplay style="width:100%"><source src="https://stream.zeno.fm/0r0xauk8m8yzv"></audio>
-<p style="color:#aaa;font-size:13px">Tap PLAY if not auto. Download Zeno Broadcaster app to GO LIVE!</p>
-<h3 style="margin-top:24px">🎵 Tap to Watch My Videos</h3>
+<h3 style="margin-top:22px">🎵 Watch My Videos</h3>
 <div class="btns">
-<a class="b yt" href="https://youtube.com/@thomask473?si=xuMXLuzMbrXhf8vq" target="_blank">▶️<br>YouTube</a>
-<a class="b tt" href="https://www.tiktok.com/@userthomask?_r=1&_t=ZS-9As3gpHufIM" target="_blank">🎵<br>TikTok</a>
+<a class="b yt" href="https://youtube.com/@thomask473" target="_blank">▶️<br>YouTube</a>
+<a class="b tt" href="https://www.tiktok.com/@userthomask" target="_blank">🎵<br>TikTok</a>
 <a class="b fb" href="https://www.facebook.com/share/19qAr6aFJr/?mibextid=wwXIfr" target="_blank">📘<br>Facebook</a>
 </div>
-<a class="wa" href="https://wa.me/254115566592?text=Mlembe%20WALUHYA%20Request" target="_blank">💬 WhatsApp Request +254115566592</a>
 </div>
+
+<div class="card">
+<h3>📩 SEND REQUEST HERE - No WhatsApp Needed!</h3>
+<p style="color:#aaa;font-size:13px">Type your request and it will appear below instantly for everyone to see!</p>
+<input id="name" placeholder="Jina lako / Your Name - e.g. John">
+<input id="village" placeholder="Kijiji / Village - e.g. Matayos, Busia">
+<input id="song" placeholder="Wimbo / Song Request - e.g. Isukuti ya Busia">
+<textarea id="msg" placeholder="Ujumbe / Message - e.g. Mlembe to all Waluhya!" rows="2"></textarea>
+<button class="req" onclick="sendReq()">📤 Tuma Request / Send Request</button>
+
+<div id="requests" style="margin-top:18px">
+<h4>🔥 Live Requests from Fans:</h4>
+<div id="list"></div>
+</div>
+</div>
+
+<div class="card" style="text-align:center">
+<a class="wa" href="https://wa.me/254115566592" target="_blank" style="margin:0">💬 Or WhatsApp: +254115566592</a>
+</div>
+
 <footer style="text-align:center;color:#555;padding:20px">© 2026 WALUHYA 2 THE WORLD</footer>
+<script>
+// Load requests
+let reqs = JSON.parse(localStorage.getItem('waluhya_reqs') || '[]');
+function showReqs(){
+let html = '';
+reqs.slice().reverse().forEach(r=>{
+html += `<div class="request-item"><b>${r.name}</b> from <b>${r.village}</b><br>🎵 Wants: ${r.song}<br><small>${r.msg} - ${r.time}</small></div>`;
+});
+document.getElementById('list').innerHTML = html || '<p style="color:#888">No requests yet. Be first!</p>';
+}
+showReqs();
+function sendReq(){
+let n=document.getElementById('name').value;
+let v=document.getElementById('village').value;
+let s=document.getElementById('song').value;
+let m=document.getElementById('msg').value;
+if(!n||!s){alert('Tafadhali andika jina na wimbo / Please enter name and song');return;}
+let now = new Date().toLocaleString();
+reqs.push({name:n,village:v,song:s,msg:m,time:now});
+localStorage.setItem('waluhya_reqs',JSON.stringify(reqs));
+document.getElementById('name').value='';document.getElementById('village').value='';document.getElementById('song').value='';document.getElementById('msg').value='';
+showReqs();
+alert('Mlembe! Request imetumwa! ✅ Your request is LIVE on site!');
+}
+</script>
 </body></html>
